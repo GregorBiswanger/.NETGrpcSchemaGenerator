@@ -1,10 +1,10 @@
 {
   "executable": "DotNetGrpcSchemaGenerator",
   "splashscreen": {
-    "imageFile": ""
+    "imageFile": "/wwwroot/img/splashscreen.jpg"
   },
   "name": "DotNetGrpcSchemaGenerator",
-  "author": "",
+  "author": "Gregor Biswanger",
   "singleInstance": false,
   "environment": "Production",
   "build": {
@@ -13,6 +13,9 @@
     "copyright": "Copyright © 2020",
     "buildVersion": "1.0.0",
     "compression": "maximum",
+    "win": {
+      "icon": "bin/Assets/DotNetGrpcSchemaGenerator.ico"
+    },
     "directories": {
       "output": "../../../bin/Desktop"
     },

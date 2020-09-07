@@ -73,10 +73,13 @@ namespace DotNetGrpcSchemaGenerator
                         WebPreferences = new WebPreferences
                         {
                             WebSecurity = false
-                        }
+                        },
+                        Show = false
                     };
 
-                    await Electron.WindowManager.CreateWindowAsync(browserWindowOptions);
+                    var mainWindow = await Electron.WindowManager.CreateWindowAsync(browserWindowOptions);
+                    mainWindow.OnReadyToShow += () => mainWindow.Show();
+                    mainWindow.SetMenuBarVisibility(false);
                 }
             });
         }

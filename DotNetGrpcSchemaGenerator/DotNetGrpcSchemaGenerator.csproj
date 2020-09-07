@@ -12,4 +12,14 @@
     <ProjectReference Include="..\DotNetGrpcSchemaGenerator.Core\DotNetGrpcSchemaGenerator.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Assets\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Assets\DotNetGrpcSchemaGenerator.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
