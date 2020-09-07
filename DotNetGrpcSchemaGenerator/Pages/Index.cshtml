@@ -1,0 +1,55 @@
+﻿@page
+@model IndexModel
+
+<form>
+    <div class="form-row">
+        <div class="col-sm-10">
+            <label for="assemblyPath">Assembly with Contracts Path:</label>
+            <div class="form-inline">
+                <input type="text" class="form-control" id="assemblyPath" style="width: 80%">
+                <button id="assemblyPathBtn" type="button" class="btn btn-light">...</button>
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-sm-10">
+            <label for="destinationPath">Project Path:</label>
+            <div class="form-inline">
+                <input type="text" class="form-control" id="destinationPath" style="width: 80%">
+                <button id="destinationPathBtn" type="button" class="btn btn-light">...</button>
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-sm-10">
+            <button id="generateBtn" type="button" class="btn btn-primary">Generate</button>
+        </div>
+    </div>
+</form>
+
+<script>
+    const { ipcRenderer } = require("electron");
+
+    document.getElementById("assemblyPathBtn").addEventListener("click", () => {
+        ipcRenderer.send("assemblyPathBtn-selectDirectory");
+    });
+
+    ipcRenderer.on("assemblyPath-reply", (sender, path) => {
+        document.getElementById("assemblyPath").value = path;
+    });
+
+    document.getElementById("destinationPathBtn").addEventListener("click", () => {
+        ipcRenderer.send("destinationPathBtn-selectDirectory");
+    });
+
+    ipcRenderer.on("destinationPathBtn-reply", (sender, path) => {
+        document.getElementById("destinationPath").value = path;
+    });
+
+    document.getElementById("generateBtn").addEventListener("click", () => {
+        const assemblyFilePath = document.getElementById("assemblyPath").value;
+        const destinationPath = document.getElementById("destinationPath").value;
+
+        ipcRenderer.send("generate-schema", { paths: [assemblyFilePath, destinationPath] });
+    });
+</script>
